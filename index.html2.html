@@ -1,0 +1,2675 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUME Skin Care</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --blue:#ff2f7d;
+  --light:#fff0f7;
+  --purple:#9b5cff;
+  --orange:#ff8a00;
+  --brown:#24142b;
+  --dark:#160d20;
+  --muted:#777;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'DM Sans',Arial,sans-serif
+}
+
+*{
+  box-sizing:border-box
+}
+
+html{
+  scroll-behavior:smooth
+}
+
+body{
+  margin:0;
+  color:var(--brown);
+  background:#fff;
+  font-family:var(--sans);
+  line-height:1.6
+}
+
+a{
+  text-decoration:none;
+  color:inherit
+}
+
+button,
+input{
+  font:inherit
+}
+
+.container{
+  width:80%;
+  max-width:1160px;
+  margin:auto
+}
+
+.section{
+  padding:85px 0
+}
+
+.section-title{
+  text-align:center;
+  font-size:40px;
+  font-weight:700;
+  text-transform:capitalize;
+  margin:0 0 48px
+}
+
+.section-title:after{
+  content:"";
+  display:block;
+  width:64px;
+  height:3px;
+  background:var(--blue);
+  margin:15px auto
+}
+
+.section-title em{
+  color:var(--orange);
+  font-family:var(--serif)
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.header{
+  position:fixed;
+  z-index:20;
+  top:0;
+  left:0;
+  width:100%;
+  height:55px;
+  padding:0 25px;
+  background:rgba(101,101,218,.55);
+  color:#fff;
+  transition:.25s
+}
+
+.header.scrolled{
+  background:rgba(33,23,19,.96);
+  box-shadow:0 4px 20px #0003
+}
+
+.header-inner{
+  height:100%;
+  display:flex;
+  align-items:center;
+  direction:ltr
+}
+.header-tools{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-right:auto
+}
+.home-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:32px;
+  height:32px;
+  margin-right:0;
+  color:#fff;
+  font-size:30px;
+  line-height:1
+}
+
+
+.search{
+  position:relative;
+  flex:0 0 240px;
+  width:240px;
+  margin-right:0
+}
+
+.search input{
+  width:100%;
+  height:30px;
+  padding:0 12px 0 34px;
+  border:0;
+  border-radius:20px;
+  outline:0
+}
+
+.search svg{
+  position:absolute;
+  left:11px;
+  top:7px;
+  color:#333;
+  pointer-events:none
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  margin-left:auto;
+  direction:rtl;
+  font-size:13px;
+  font-weight:600
+}
+
+/* تعديل الروابط بحيث لا يؤثر التعديل على Home بل يمنع ظهور الخط تحته */
+.nav>a,
+.dropdown>a{
+  position:relative;
+  padding:7px 0;
+  color:#fff
+}
+
+/* استثناء Home من خط التحته التفاعلي */
+.nav>a.home-link:after{
+  display: none !important;
+}
+
+.nav>a:not(.home-link):after,
+.dropdown>a:after{
+  content:"";
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:0;
+  height:2px;
+  background:#ff8a00;
+  opacity:0;
+  transition:.4s
+}
+
+.nav>a:not(.home-link):hover:after,
+.nav>a:not(.home-link).active:after,
+.dropdown>a:hover:after{
+  width:100%;
+  opacity:8;
+}
+
+.dropdown{
+  position:relative
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:35px;
+  right:0;
+  width:160px;
+  padding:7px;
+  background:#fff;
+  border:1px solid #ff2f7d;
+  border-radius:10px;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+  text-align:center
+}
+
+.dropdown:hover .dropdown-menu{
+  opacity:1;
+  visibility:visible
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:9px;
+  color:#8b45ff;
+  font-size:12px
+}
+
+.dropdown-menu a:hover{
+  color:#ff2f7d
+}
+
+.mobile-menu{
+  display:none;
+  margin-right:auto;
+  border:0;
+  background:none;
+  color:#fff
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#fff;
+  font-weight:800;
+  font-size:18px;
+  letter-spacing:.5px;
+  white-space:nowrap;
+  margin:0 25px
+}
+
+.brand-mark{
+  color:#ff8a00;
+  font-size:22px
+}
+
+.header .search input{
+  color:#24142b;
+  background:#fff
+}
+
+.header .search input::placeholder{
+  color:#777
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  text-align:center;
+  background:url('https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=2200&q=88') center/cover
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(35,10,40,.48)
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+  max-width:720px
+}
+
+.hero h1{
+  margin:0;
+  font-size:clamp(3rem,7vw,5.7rem);
+  line-height:1.05
+}
+
+.hero h1 em{
+  color:var(--orange);
+  font-family:var(--serif);
+  font-style:italic
+}
+
+.hero p{
+  color:#eee;
+  margin:22px auto;
+  max-width:600px
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px
+}
+
+.button{
+  display:inline-block;
+  padding:13px 26px;
+  border:2px solid var(--orange);
+  font-weight:700;
+  font-size:13px;
+  transition:.2s
+}
+
+.button:hover{
+  transform:translateY(-3px)
+}
+
+.btn-light{
+  background:#fff;
+  color:#ff2f7d;
+  border-color:#fff
+}
+
+.btn-orange{
+  background:linear-gradient(135deg,#ff2f7d,#ff8a00);
+  color:#fff;
+  box-shadow:0 8px 22px #ff2f7d55
+}
+
+
+/* =========================
+   WELCOME
+   ========================= */
+
+.welcome-grid,
+.offers-grid,
+.team-grid,
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px
+}
+
+.welcome-card{
+  position:relative;
+  isolation:isolate;
+  min-height:210px;
+  padding:28px 20px;
+  border:2px solid #ff2f7d;
+  border-radius:9px;
+  text-align:center;
+  overflow:hidden
+}
+
+.welcome-card:after,
+.offer:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  height:0;
+  background:linear-gradient(135deg,#ff2f7d,#9b5cff);
+  opacity:.85;
+  transition:.5s
+}
+
+.welcome-card:hover:after,
+.offer:hover:after{
+  height:100%
+}
+
+.welcome-card:hover h3,
+.welcome-card:hover p,
+.welcome-card:hover a,
+.offer:hover h3,
+.offer:hover p{
+  color:#fff
+}
+
+.icon{
+  color:var(--blue);
+  font-size:32px
+}
+
+.welcome-card h3,
+.offer h3{
+  margin:10px 0;
+  font:600 25px var(--serif)
+}
+
+.welcome-card p,
+.offer p{
+  color:var(--muted);
+  font-size:14px
+}
+
+.welcome-card a{
+  display:inline-block;
+  margin-top:15px;
+  color:var(--blue);
+  font-size:13px
+}
+
+
+/* =========================
+   PRODUCTS
+   ========================= */
+
+.portfolio{
+  background:#fff0f7
+}
+
+.works-grid{
+  display:grid;
+  grid-template-columns:repeat(3,300px);
+  justify-content:center;
+  gap:20px
+}
+
+.work{
+  position:relative;
+  width:300px;
+  height:200px;
+  background-position:center;
+  background-size:cover;
+  cursor:pointer
+}
+
+.work:nth-child(1){
+  background-image:url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1000&q=88')
+}
+
+.work:nth-child(2){
+  background-image:url('https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=88')
+}
+
+.work:nth-child(3){
+  background-image:url('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1000&q=88')
+}
+
+.work:nth-child(4){
+  background-image:url('https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1000&q=88')
+}
+
+.work:nth-child(5){
+  background-image:url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1000&q=88')
+}
+
+.work:nth-child(6){
+  background-image:url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=88')
+}
+
+.work-layer{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:25px;
+  background:rgba(35,10,40,.48);
+  color:#fff;
+  text-align:center;
+  visibility:hidden;
+  opacity:0;
+  transition:.15s
+}
+
+.work:hover .work-layer,
+.work.active .work-layer{
+  visibility:visible;
+  opacity:1
+}
+
+.work-layer h3{
+  margin:0;
+  color:#b5b5b8;
+  font-size:27px;
+  text-transform:uppercase
+}
+
+.work-layer span{
+  margin-top:5px;
+  font-size:13px
+}
+
+.work-layer strong{
+  margin-top:8px;
+  font:600 22px var(--serif)
+}
+
+.work-icons{
+  display:flex;
+  gap:10px;
+  margin-top:24px
+}
+
+.work-icons a{
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:30px;
+  border-radius:6px;
+  color:#777;
+  background:#fff;
+  font-size:20px
+}
+
+
+/* =========================
+   SERVICES
+   ========================= */
+
+.offer{
+  position:relative;
+  isolation:isolate;
+  min-height:190px;
+  padding:25px 20px;
+  border-right:3px solid var(--orange);
+  background:#fff;
+  box-shadow:0 10px 25px #43230f12;
+  overflow:hidden
+}
+
+.offer h3{
+  font-size:22px
+}
+
+
+/* =========================
+   WHY CHOOSE US
+   ========================= */
+
+.why{
+  background:#fff4e8
+}
+
+.why-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:65px;
+  align-items:center
+}
+
+.why-copy h2{
+  font:600 clamp(3rem,5vw,5rem)/1 var(--serif);
+  margin:0 0 22px
+}
+
+.why-copy h2 em{
+  color:var(--orange);
+  font-style:italic
+}
+
+.why-copy p{
+  color:var(--muted)
+}
+
+.checks{
+  padding:0;
+  list-style:none
+}
+
+.checks li{
+  margin:10px 0;
+  font-size:14px
+}
+
+.checks li:before{
+  content:'✓';
+  color:var(--orange);
+  font-weight:bold;
+  margin-left:10px
+}
+
+.why-photo{
+  min-height:470px;
+  background:url('https://images.unsplash.com/photo-1555820585-c5ae44394b79?fm=jpg&q=60&w=3000&auto=format&fit=crop') center/cover
+}
+
+.dots{
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  margin-top:22px
+}
+
+.dots span{
+  width:10px;
+  height:10px;
+  border:1px solid var(--blue);
+  border-radius:50%
+}
+
+.dots .active{
+  background:var(--blue)
+}
+
+
+/* =========================
+   STATS
+   ========================= */
+
+.stats{
+  position:relative;
+  min-height:320px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  background:url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1800&q=90') center/cover fixed
+}
+
+.stats .overlay{
+  background:rgba(35,10,40,.62)
+}
+
+.stats-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  text-align:center
+}
+
+.stat{
+  position:relative;
+  isolation:isolate;
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(22,13,32,.42);
+  border:1px solid #ffffff55;
+  overflow:hidden
+}
+
+.stat-icon{
+  font-size:28px
+}
+
+.stat strong{
+  display:block;
+  font:600 44px var(--serif)
+}
+
+.stat small{
+  text-transform:uppercase
+}
+
+
+/* =========================
+   PRICING
+   ========================= */
+
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5%
+}
+
+.price-card{
+  position:relative;
+  isolation:isolate;
+  min-height:370px;
+  padding:28px 20px;
+  border:1px solid #8787e6;
+  border-radius:9px;
+  text-align:center;
+  overflow:hidden
+}
+
+.price-card:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  height:0;
+  background:#ff2f7d;
+  opacity:.5;
+  transition:.5s
+}
+
+.price-card:hover:after{
+  height:100%
+}
+
+.price-card h3{
+  font:600 26px var(--serif);
+  text-transform:uppercase
+}
+
+.price-circle{
+  display:grid;
+  place-items:center;
+  width:100px;
+  height:100px;
+  margin:20px auto;
+  border:2px solid #ff2f7d;
+  border-radius:50%
+}
+
+.price-circle strong{
+  font:600 35px var(--serif)
+}
+
+.price-circle span{
+  font-size:12px
+}
+
+.price-card ul{
+  padding:0;
+  list-style:none;
+  color:var(--muted);
+  font-size:13px
+}
+
+.price-card li{
+  padding:8px
+}
+
+.price-button{
+  background:transparent;
+  border:2px solid #ff2f7d;
+  border-radius:9px
+}
+
+.featured-price{
+  transform:translateY(-12px)
+}
+
+
+/* =========================
+   EVERY FORMULA / EVERY SKIN
+   ========================= */
+
+.promise{
+  position:relative;
+  min-height:430px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  overflow:hidden;
+  background:#24142b;
+}
+
+.promise-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  z-index:0;
+}
+
+.promise-shade{
+  position:absolute;
+  inset:0;
+  background:rgba(35,10,40,.25);
+  z-index:1;
+}
+
+.promise-grid{
+  position:relative;
+  z-index:2;
+  width:80%;
+  max-width:1160px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.promise-card{
+  position:relative;
+  min-height:250px;
+  display:flex;
+  align-items:flex-end;
+  gap:18px;
+  padding:30px;
+  background:rgba(22,13,32,.22);
+  border:1px solid rgba(255,255,255,.75);
+  border-radius:8px;
+  overflow:hidden;
+  backdrop-filter:blur(2px);
+}
+
+.promise-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(
+    180deg,
+    rgba(22,13,32,.02),
+    rgba(22,13,32,.45)
+  );
+}
+
+.promise-number{
+  display:grid;
+  place-items:center;
+  flex:0 0 55px;
+  height:55px;
+  border:1px solid var(--orange);
+  border-radius:50%;
+  color:#fff;
+  background:rgba(255,138,0,.18);
+}
+
+.promise-card h3{
+  margin:0;
+  font:600 25px var(--serif)
+}
+
+.promise-card p{
+  color:#fff;
+  font-size:14px
+}
+
+
+/* =========================
+   OUR TEAM
+   ========================= */
+
+.team{
+  background:#fff
+}
+
+.team-card{
+  position:relative;
+  border-radius:9px;
+  background:#fff3f8;
+  text-align:center;
+  overflow:hidden
+}
+
+.team-photo{
+  position:relative;
+  height:255px;
+  background-position:center;
+  background-size:cover
+}
+
+
+/* Lina - skincare specialist */
+.team-card:nth-child(1) .team-photo{
+  background-image:url('https://32b3fbeda2339682f7aa-a47f0bf54e57f7af18b46fcf8fc88e02.ssl.cf2.rackcdn.com/Original/7358580_18513%242023_08_10_15_32_12_0184.png');
+  background-position:center;
+}
+
+/* Maya - product expert */
+.team-card:nth-child(2) .team-photo{
+  background-image:url('https://www.ourself.com/cdn/shop/articles/lisa_780x585.jpg?v=1645134167');
+  background-position:center
+}
+
+
+/* Dana - beauty consultant */
+.team-card:nth-child(3) .team-photo{
+  background-image:url('https://753f0e30118f17388609.cdn6.editmysite.com/uploads/b/753f0e30118f17388609de9e8324027dce1ffe232a5822cf4d7e33cb76f724ad/2026-02-03_22-06-38_1770192485.jpg?optimize=medium&width=2400');
+  background-position:center
+}
+
+.team-photo:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#ff2f7d80;
+  opacity:0;
+  transition:.4s
+}
+
+.team-card:hover .team-photo:after{
+  opacity:1
+}
+
+.team-social{
+  position:absolute;
+  z-index:2;
+  top:0;
+  left:0;
+  opacity:0;
+  transition:.3s
+}
+
+.team-card:hover .team-social{
+  opacity:1
+}
+
+.team-social a{
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:40px;
+  margin-bottom:2px;
+  color:#fff;
+  background:#ff2f7d
+}
+
+.team-info{
+  padding:15px
+}
+
+.team-info h3{
+  margin:0;
+  font:600 25px var(--serif)
+}
+
+.team-info p{
+  margin:3px 0;
+  color:var(--orange);
+  font-size:12px;
+  text-transform:uppercase
+}
+
+
+/* =========================
+   SKIN JOURNAL
+   ========================= */
+
+.blog-grid{
+  gap:5%
+}
+
+.post{
+  position:relative;
+  border:2px solid #9b5cff;
+  border-radius:9px;
+  background:#fff;
+  overflow:hidden
+}
+
+.post:after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  height:0;
+  background:#b3b3f5;
+  opacity:.5;
+  transition:.5s
+}
+
+.post:hover:after{
+  height:100%
+}
+
+.post-photo{
+  position:relative;
+  z-index:1;
+  height:220px;
+  background-position:center;
+  background-size:cover
+}
+
+.post:nth-child(1) .post-photo{
+  background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=88')
+}
+
+.post:nth-child(2) .post-photo{
+  background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=88')
+}
+
+.post:nth-child(3) .post-photo{
+  background-image:url('https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=1000&q=88')
+}
+
+.post-social{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  opacity:0;
+  transition:.3s
+}
+
+.post:hover .post-social{
+  opacity:1
+}
+
+.post-social a{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  color:#fff;
+  background:#ff2f7d
+}
+
+.post-meta,
+.post-content{
+  position:relative;
+  z-index:2
+}
+
+.post-meta{
+  display:flex;
+  justify-content:space-around;
+  padding:14px 8px 0;
+  color:#8b45ff;
+  font-size:11px
+}
+
+.post-content{
+  padding:10px 20px 23px;
+  text-align:center
+}
+
+.post-content h3{
+  margin:0 0 8px;
+  font:600 23px var(--serif)
+}
+
+.post-content p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px
+}
+
+.post-content a{
+  display:inline-block;
+  margin-top:15px;
+  border-bottom:1px solid var(--orange);
+  font-size:13px
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer{
+  color:#eee;
+  background:var(--dark)
+}
+
+.footer-inner{
+  display:grid;
+  grid-template-columns:1fr 1.5fr;
+  min-height:220px
+}
+
+.footer-photo{
+  background:url('https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=2200&q=88') center/cover
+}
+
+.footer-content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:15px
+}
+
+.footer-social{
+  display:flex;
+  gap:10px
+}
+
+.footer-social a{
+  display:grid;
+  place-items:center;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#ff2f7d
+}
+
+.footer-social a:hover{
+  background:var(--orange)
+}
+
+.footer-content small{
+  color:#ad9789
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media(max-width:800px){
+
+  .container{
+    width:90%
+  }
+
+  .header{
+    padding:0 18px
+  }
+
+  .header-tools{
+    display:none
+  }
+
+  .mobile-menu{
+    display:block
+  }
+
+  .nav{
+    position:absolute;
+    top:55px;
+    right:0;
+    left:0;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:12px 24px;
+    background:var(--dark)
+  }
+
+  .nav.open{
+    display:flex
+  }
+
+  .nav>a,
+  .dropdown>a{
+    padding:11px 0;
+    border-bottom:1px solid #fff2
+  }
+
+  .dropdown-menu{
+    position:static;
+    display:none;
+    width:100%;
+    opacity:1;
+    visibility:visible;
+    transform:none
+  }
+
+  .dropdown:hover .dropdown-menu{
+    display:block
+  }
+
+  .hero h1{
+    font-size:3.7rem
+  }
+
+  .section{
+    padding:70px 0
+  }
+
+  .welcome-grid,
+  .works-grid,
+  .offers-grid,
+  .why-grid,
+  .pricing-grid,
+  .promise-grid,
+  .team-grid,
+  .blog-grid{
+    grid-template-columns:1fr;
+    gap:22px
+  }
+
+  .works-grid{
+    justify-content:center
+  }
+
+  .work{
+    width:min(300px,100%)
+  }
+
+  .stats{
+    background-attachment:scroll
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+    gap:28px 5px
+  }
+
+  .featured-price{
+    transform:none
+  }
+
+  .footer-inner{
+    grid-template-columns:1fr
+  }
+
+  .footer-photo{
+    min-height:180px
+  }
+
+  .footer-content{
+    padding:35px 20px
+  }
+
+  .promise{
+    min-height:620px
+  }
+
+  .promise-grid{
+    width:90%;
+    grid-template-columns:1fr;
+    gap:22px
+  }
+
+  .promise-card{
+    min-height:230px
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+     ========================= -->
+
+<header class="header" id="header">
+
+  <div class="header-inner container">
+
+    <div class="header-tools">
+
+      <a class="home-icon" href="#home" aria-label="Home">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M3 10.5 12 3l9 7.5v8a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H4.5A1.5 1.5 0 0 1 3 18.5v-8Z"/>
+        </svg>
+      </a>
+
+      <label class="search">
+        <input type="search" aria-label="Search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m20 20-4-4"/>
+        </svg>
+      </label>
+
+    </div>
+
+    <a class="brand" href="#home">
+
+      <span class="brand-mark">◒</span>
+
+      LUME
+
+    </a>
+
+    <button class="mobile-menu">
+      ☰
+    </button>
+
+    <nav class="nav">
+
+      <!-- تم إضافة الكلاس home-link لإزالة الخط التحتي -->
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#about">
+        About Us
+      </a>
+
+      <a href="#portfolio">
+        Products
+      </a>
+
+      <a href="#services">
+        Skincare
+      </a>
+
+      <a href="#prices">
+        Pricing
+      </a>
+
+      <a href="#team">
+        Our Team
+      </a>
+
+      <div class="dropdown">
+
+        <a href="#blog">
+          Journal
+        </a>
+
+        <div class="dropdown-menu">
+
+          <a href="#blog">
+            Skin Guide
+          </a>
+
+          <a href="#blog">
+            Ingredients
+          </a>
+
+          <a href="#blog">
+            Skincare Tips
+          </a>
+
+        </div>
+
+      </div>
+
+      <a href="#contact">
+        Contact Us
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================
+     HERO
+     ========================= -->
+
+<section class="hero" id="home">
+
+  <div class="overlay"></div>
+
+  <div class="hero-content container">
+
+    <p>
+      SKIN CARE · SINCE 2021
+    </p>
+
+    <h1>
+      WE ARE <em>LUME</em>
+      <br>
+      SKIN CARE
+    </h1>
+
+    <p>
+      Discover daily skincare that combines gentle,
+      effective ingredients to give your skin a healthy
+      glow and a soft, radiant finish.
+    </p>
+
+    <div class="buttons">
+
+      <a class="button btn-light" href="#about">
+        Discover More
+      </a>
+
+      <a class="button btn-orange" href="#contact">
+        Shop Now
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+     ========================= -->
+
+<section class="section" id="about">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      welcome to <em>LUME</em>
+    </h2>
+
+    <div class="welcome-grid">
+
+      <article class="welcome-card">
+
+        <div class="icon">
+          ⚙
+        </div>
+
+        <h3>
+          Gentle & Fresh
+        </h3>
+
+        <p>
+          Gentle formulas with carefully selected
+          concentrations to keep your skin fresh
+          and comfortable.
+        </p>
+
+        <a href="#services">
+          Discover More
+        </a>
+
+      </article>
+
+
+      <article class="welcome-card">
+
+        <div class="icon">
+          ✣
+        </div>
+
+        <h3>
+          For Every Skin
+        </h3>
+
+        <p>
+          A versatile collection for dry,
+          combination, and oily skin types.
+        </p>
+
+        <a href="#services">
+          Discover More
+        </a>
+
+      </article>
+
+
+      <article class="welcome-card">
+
+        <div class="icon">
+          ▯
+        </div>
+
+        <h3>
+          Made With Care
+        </h3>
+
+        <p>
+          Thoughtfully crafted skincare that leaves
+          your skin softer, smoother, and more radiant
+          every day.
+        </p>
+
+        <a href="#services">
+          Discover More
+        </a>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PRODUCTS
+     ========================= -->
+
+<section class="section portfolio" id="portfolio">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      featured <em>LUME</em> products
+    </h2>
+
+    <div class="works-grid">
+
+
+      <article class="work">
+
+        <div class="work-layer">
+
+          <h3>
+            CATEGORY
+          </h3>
+
+          <span>
+            cleansers
+          </span>
+
+          <strong>
+            Gentle Face Cleanser
+          </strong>
+
+          <div class="work-icons">
+
+            <a href="#">
+              ♡
+            </a>
+
+            <a href="#">
+              ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article class="work">
+
+        <div class="work-layer">
+
+          <h3>
+            CATEGORY
+          </h3>
+
+          <span>
+            serums
+          </span>
+
+          <strong>
+            Vitamin C Serum
+          </strong>
+
+          <div class="work-icons">
+
+            <a href="#">
+              ♡
+            </a>
+
+            <a href="#">
+              ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article class="work">
+
+        <div class="work-layer">
+
+          <h3>
+            CATEGORY
+          </h3>
+
+          <span>
+            moisturizers
+          </span>
+
+          <strong>
+            Hydra Glow Cream
+          </strong>
+
+          <div class="work-icons">
+
+            <a href="#">
+              ♡
+            </a>
+
+            <a href="#">
+              ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article class="work">
+
+        <div class="work-layer">
+
+          <h3>
+            CATEGORY
+          </h3>
+
+          <span>
+            sunscreen
+          </span>
+
+          <strong>
+            Daily SPF 50
+          </strong>
+
+          <div class="work-icons">
+
+            <a href="#">
+              ♡
+            </a>
+
+            <a href="#">
+              ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article class="work">
+
+        <div class="work-layer">
+
+          <h3>
+            CATEGORY
+          </h3>
+
+          <span>
+            masks
+          </span>
+
+          <strong>
+            Soothing Clay Mask
+          </strong>
+
+          <div class="work-icons">
+
+            <a href="#">
+              ♡
+            </a>
+
+            <a href="#">
+              ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article class="work">
+
+        <div class="work-layer">
+
+          <h3>
+            CATEGORY
+          </h3>
+
+          <span>
+            lip care
+          </span>
+
+          <strong>
+            Nourish Lip Balm
+          </strong>
+
+          <div class="work-icons">
+
+            <a href="#">
+              ♡
+            </a>
+
+            <a href="#">
+              ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+     ========================= -->
+
+<section class="section" id="services">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      what we <em>offer</em>
+    </h2>
+
+    <div class="offers-grid">
+
+
+      <article class="offer">
+
+        <div class="icon">
+          ♛
+        </div>
+
+        <h3>
+          Facial Cleansers
+        </h3>
+
+        <p>
+          Gentle cleansers that remove dirt and excess
+          oil without leaving your skin feeling tight.
+        </p>
+
+      </article>
+
+
+      <article class="offer">
+
+        <div class="icon">
+          ✦
+        </div>
+
+        <h3>
+          Serums & Treatments
+        </h3>
+
+        <p>
+          Concentrated serums designed to boost glow,
+          hydration, and the overall appearance of your skin.
+        </p>
+
+      </article>
+
+
+      <article class="offer">
+
+        <div class="icon">
+          ▣
+        </div>
+
+        <h3>
+          Moisturizing Care
+        </h3>
+
+        <p>
+          Daily moisturizers that help support the skin
+          barrier and maintain lasting softness.
+        </p>
+
+      </article>
+
+
+      <article class="offer">
+
+        <div class="icon">
+          ?
+        </div>
+
+        <h3>
+          Sun Protection
+        </h3>
+
+        <p>
+          High-protection sunscreens designed for
+          comfortable everyday use.
+        </p>
+
+      </article>
+
+
+      <article class="offer">
+
+        <div class="icon">
+          ↝
+        </div>
+
+        <h3>
+          Face Masks
+        </h3>
+
+        <p>
+          Care masks that refresh, cleanse,
+          and hydrate your skin.
+        </p>
+
+      </article>
+
+
+      <article class="offer">
+
+        <div class="icon">
+          ✿
+        </div>
+
+        <h3>
+          Lip & Body Care
+        </h3>
+
+        <p>
+          Extra lip and body care to complete
+          your daily skincare routine.
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     WHY CHOOSE US
+     ========================= -->
+
+<section class="section why">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      why choose <em>us</em>
+    </h2>
+
+    <div class="why-grid">
+
+      <div class="why-copy">
+
+        <h2>
+          Your Skin,
+          <br>
+          <em>Naturally.</em>
+        </h2>
+
+        <p>
+          We believe skincare should never be complicated —
+          just thoughtful formulas, clear ingredients,
+          and results you can feel.
+        </p>
+
+        <ul class="checks">
+
+          <li>
+            Carefully selected ingredients
+          </li>
+
+          <li>
+            Gentle formulas for everyday use
+          </li>
+
+          <li>
+            High quality at an affordable price
+          </li>
+
+          <li>
+            Skincare made for your routine
+          </li>
+
+        </ul>
+
+        <a class="button btn-orange" href="#contact">
+          Discover More
+        </a>
+
+      </div>
+
+
+      <div class="why-photo"></div>
+
+    </div>
+
+
+    <div class="dots">
+
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+     ========================= -->
+
+<section class="stats">
+
+  <div class="overlay"></div>
+
+  <div class="container stats-grid">
+
+    <div class="stat">
+
+      <span class="stat-icon">
+        ♕
+      </span>
+
+      <strong>
+        25k
+      </strong>
+
+      <small>
+        happy customers
+      </small>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span class="stat-icon">
+        ★
+      </span>
+
+      <strong>
+        15
+      </strong>
+
+      <small>
+        awards won
+      </small>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span class="stat-icon">
+        ☕
+      </span>
+
+      <strong>
+        48k
+      </strong>
+
+      <small>
+        products sold
+      </small>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span class="stat-icon">
+        ▤
+      </span>
+
+      <strong>
+        18
+      </strong>
+
+      <small>
+        skin routines
+      </small>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PRICING
+     ========================= -->
+
+<section class="section" id="prices">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      pricing <em>table</em>
+    </h2>
+
+    <div class="pricing-grid">
+
+
+      <article class="price-card">
+
+        <h3>
+          Daily Cleanse
+        </h3>
+
+        <div class="price-circle">
+
+          <strong>
+            39
+          </strong>
+
+          <span>
+            SAR
+          </span>
+
+        </div>
+
+        <ul>
+
+          <li>
+            Gentle Face Wash
+          </li>
+
+          <li>
+            Niacinamide Toner
+          </li>
+
+          <li>
+            Soft Cotton Pads
+          </li>
+
+        </ul>
+
+        <button class="button price-button">
+          shop now
+        </button>
+
+      </article>
+
+
+      <article class="price-card featured-price">
+
+        <h3>
+          Glow Routine
+        </h3>
+
+        <div class="price-circle">
+
+          <strong>
+            89
+          </strong>
+
+          <span>
+            SAR
+          </span>
+
+        </div>
+
+        <ul>
+
+          <li>
+            Vitamin C Serum
+          </li>
+
+          <li>
+            Hydrating Cream
+          </li>
+
+          <li>
+            SPF 50 Sunscreen
+          </li>
+
+        </ul>
+
+        <button class="button price-button">
+          shop now
+        </button>
+
+      </article>
+
+
+      <article class="price-card">
+
+        <h3>
+          Complete Skin Set
+        </h3>
+
+        <div class="price-circle">
+
+          <strong>
+            149
+          </strong>
+
+          <span>
+            SAR
+          </span>
+
+        </div>
+
+        <ul>
+
+          <li>
+            Gentle Cleanser
+          </li>
+
+          <li>
+            Glow Serum + Cream
+          </li>
+
+          <li>
+            Daily SPF 50
+          </li>
+
+        </ul>
+
+        <button class="button price-button">
+          shop now
+        </button>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     EVERY FORMULA / EVERY SKIN
+     ========================= -->
+
+<section class="promise">
+
+  <!-- صورة واحدة للقسم كامل -->
+  <img
+    class="promise-image"
+    src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=1800&q=90"
+    alt="Skincare professional"
+  >
+
+  <!-- طبقة خفيفة فوق الصورة -->
+  <div class="promise-shade"></div>
+
+  <div class="promise-grid">
+
+
+    <article class="promise-card">
+
+      <div class="promise-number">
+        01
+      </div>
+
+      <div>
+
+        <h3>
+          Every Formula
+        </h3>
+
+        <p>
+          Every formula is carefully selected to be
+          gentle, effective, and easy to fit into
+          your daily routine.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article class="promise-card">
+
+      <div class="promise-number">
+        02
+      </div>
+
+      <div>
+
+        <h3>
+          Every Skin
+        </h3>
+
+        <p>
+          We offer versatile options to help you
+          build a routine around your skin needs.
+        </p>
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     OUR TEAM
+     ========================= -->
+
+<section class="section team" id="team">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      our <em>team</em>
+    </h2>
+
+    <div class="team-grid">
+
+
+      <article class="team-card">
+
+        <div class="team-photo">
+
+          <div class="team-social">
+
+            <a href="#">
+              f
+            </a>
+
+            <a href="#">
+              t
+            </a>
+
+            <a href="#">
+              in
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="team-info">
+
+          <h3>
+            Lina
+          </h3>
+
+          <p>
+            Skin Care Specialist
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="team-card">
+
+        <div class="team-photo">
+
+          <div class="team-social">
+
+            <a href="#">
+              f
+            </a>
+
+            <a href="#">
+              t
+            </a>
+
+            <a href="#">
+              in
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="team-info">
+
+          <h3>
+            Maya
+          </h3>
+
+          <p>
+            Product Expert
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="team-card">
+
+        <div class="team-photo">
+
+          <div class="team-social">
+
+            <a href="#">
+              f
+            </a>
+
+            <a href="#">
+              t
+            </a>
+
+            <a href="#">
+              in
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="team-info">
+
+          <h3>
+            Dana
+          </h3>
+
+          <p>
+            Beauty Consultant
+          </p>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SKIN JOURNAL
+     ========================= -->
+
+<section class="section" id="blog">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      skin <em>journal</em>
+    </h2>
+
+    <div class="blog-grid">
+
+
+      <article class="post">
+
+        <div class="post-photo">
+
+          <div class="post-social">
+
+            <a href="#">
+              f
+            </a>
+
+            <a href="#">
+              in
+            </a>
+
+            <a href="#">
+              t
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="post-meta">
+
+          <span>
+            LUME
+          </span>
+
+          <span>
+            02 Sep
+          </span>
+
+          <span>
+            01
+          </span>
+
+        </div>
+
+        <div class="post-content">
+
+          <h3>
+            Morning Glow Routine
+          </h3>
+
+          <p>
+            A quick morning routine that hydrates
+            your skin and gives you a fresh glow
+            to start the day.
+          </p>
+
+          <a href="#blog">
+            Read More
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="post">
+
+        <div class="post-photo">
+
+          <div class="post-social">
+
+            <a href="#">
+              f
+            </a>
+
+            <a href="#">
+              in
+            </a>
+
+            <a href="#">
+              t
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="post-meta">
+
+          <span>
+            LUME
+          </span>
+
+          <span>
+            02 Sep
+          </span>
+
+          <span>
+            02
+          </span>
+
+        </div>
+
+        <div class="post-content">
+
+          <h3>
+            Glow Ingredients
+          </h3>
+
+          <p>
+            A simple guide to popular ingredients
+            that support brighter, more hydrated-looking skin.
+          </p>
+
+          <a href="#blog">
+            Read More
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="post">
+
+        <div class="post-photo">
+
+          <div class="post-social">
+
+            <a href="#">
+              f
+            </a>
+
+            <a href="#">
+              in
+            </a>
+
+            <a href="#">
+              t
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="post-meta">
+
+          <span>
+            LUME
+          </span>
+
+          <span>
+            02 Sep
+          </span>
+
+          <span>
+            03
+          </span>
+
+        </div>
+
+        <div class="post-content">
+
+          <h3>
+            Night Skin Ritual
+          </h3>
+
+          <p>
+            A calming evening ritual to help you
+            end the day with a relaxing skincare routine.
+          </p>
+
+          <a href="#blog">
+            Read More
+          </a>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+     ========================= -->
+
+<footer class="footer" id="contact">
+
+  <div class="footer-inner">
+
+    <div class="footer-photo"></div>
+
+    <div class="footer-content">
+
+      <a class="brand" href="#home">
+
+        <span class="brand-mark">
+          ◒
+        </span>
+
+        LUME
+
+      </a>
+
+      <p>
+        Simple care. Radiant skin.
+      </p>
+
+      <div class="footer-social">
+
+        <a href="#">
+          f
+        </a>
+
+        <a href="#">
+          t
+        </a>
+
+        <a href="#">
+          ▶
+        </a>
+
+        <a href="#">
+          in
+        </a>
+
+        <a href="#">
+          ◎
+        </a>
+
+        <a href="#">
+          g+
+        </a>
+
+      </div>
+
+      <small>
+        © 2026 LUME Skin Care. All rights reserved.
+      </small>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+     ========================= -->
+
+<script>
+
+const header = document.querySelector('#header');
+
+const menu = document.querySelector('.mobile-menu');
+
+const nav = document.querySelector('.nav');
+
+
+window.addEventListener(
+  'scroll',
+  () => {
+
+    header.classList.toggle(
+      'scrolled',
+      scrollY > 30
+    );
+
+  },
+  {passive:true}
+);
+
+
+menu.addEventListener(
+  'click',
+  () => {
+
+    nav.classList.toggle('open');
+
+  }
+);
+
+
+document.querySelectorAll('.nav a').forEach(
+  a => {
+
+    a.addEventListener(
+      'click',
+      () => {
+
+        nav.classList.remove('open');
+
+      }
+    );
+
+  }
+);
+
+
+document.querySelectorAll('.work').forEach(
+  card => {
+
+    card.addEventListener(
+      'click',
+      e => {
+
+        if(e.target.closest('a')){
+          e.preventDefault();
+        }
+
+        card.classList.toggle('active');
+
+      }
+    );
+
+  }
+);
+
+
+document.addEventListener(
+  'click',
+  e => {
+
+    if(!e.target.closest('.work')){
+
+      document
+        .querySelectorAll('.work.active')
+        .forEach(
+          c => c.classList.remove('active')
+        );
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
